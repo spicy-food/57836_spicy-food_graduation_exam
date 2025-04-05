@@ -46,3 +46,6 @@ MVPリリース
 ■ 機能の実装方針予定
 一般的なCRUD以外の実装予定の機能についてそれぞれどのようなイメージ(使用するAPIや)で実装する予定なのか現状考えているもので良いので教えて下さい。
 今は考えていません。
+
+##画面遷移図のURL
+https://www.figma.com/design/SYbQ7zSxw8UnfPpSRbvS3C/Untitled?node-id=0-1&m=dev&t=Lrx2BNdfoqHzTdiY-1
