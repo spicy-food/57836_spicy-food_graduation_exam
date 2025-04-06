@@ -48,4 +48,4 @@ MVPリリース
 今は考えていません。
 
 ##画面遷移図のURL
-https://www.figma.com/design/SYbQ7zSxw8UnfPpSRbvS3C/Untitled?node-id=0-1&m=dev&t=Lrx2BNdfoqHzTdiY-1
+https://www.figma.com/design/Gs9c8qbtvxt0c8ZJJM9eHs/Untitled?node-id=0-1&m=dev&t=S5GPOKrqxrN9sVC3-1
