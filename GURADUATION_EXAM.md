@@ -48,4 +48,4 @@ MVPリリース
 今は考えていません。
 
 ##ER図のURL
-[![Image from Gyazo](https://i.gyazo.com/3f088558b8fac4af0d20405987020ac7.png)](https://gyazo.com/3f088558b8fac4af0d20405987020ac7)
+[![Image from Gyazo](https://i.gyazo.com/ba4f750124d9d8a66e499c81500ccd43.png)](https://gyazo.com/ba4f750124d9d8a66e499c81500ccd43)
