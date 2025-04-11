@@ -9,7 +9,7 @@ services:
     name: coffee_records
     env: ruby
     plan: free
-    buildCommand: "bin/render-build.sh"  # ./を削除
+    buildCommand: "./render-build.sh"  # binディレクトリからルートに変更
     startCommand: "bundle exec puma -C config/puma.rb"
     envVars:
       - key: DATABASE_URL
