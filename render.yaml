@@ -7,7 +7,7 @@ services:
   - type: web
     name: coffee_records
     env: ruby
-    buildCommand: "./render-build.sh"  # binディレクトリへの参照を削除
+    buildCommand: "./render-build.sh"  # パスを修正
     startCommand: "bundle exec puma -C config/puma.rb"
     envVars:
       - key: DATABASE_URL
