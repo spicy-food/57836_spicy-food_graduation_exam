@@ -1,0 +1,20 @@
+databases:
+  - name: coffee_records_db
+    databaseName: coffee_records_production
+    user: coffee_records
+    plan: free
+
+services:
+  - type: web
+    name: coffee_records
+    env: ruby
+    plan: free
+    buildCommand: "./bin/render-build.sh"
+    startCommand: "bundle exec puma -C config/puma.rb"
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: coffee_records_db
+          property: connectionString
+      - key: RAILS_MASTER_KEY
+        sync: false
