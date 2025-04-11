@@ -1,15 +1,13 @@
 databases:
   - name: coffee_records_db
     databaseName: coffee_records_production
-    user: coffee_records
     plan: free
 
 services:
   - type: web
     name: coffee_records
     env: ruby
-    plan: free
-    buildCommand: "./render-build.sh"  # binディレクトリからルートに変更
+    buildCommand: "./render-build.sh"  # binディレクトリへの参照を削除
     startCommand: "bundle exec puma -C config/puma.rb"
     envVars:
       - key: DATABASE_URL
