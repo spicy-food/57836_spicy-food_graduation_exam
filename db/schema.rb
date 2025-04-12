@@ -10,9 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_04_11_110441) do
+ActiveRecord::Schema[7.1].define(version: 2025_04_12_162245) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "coffee_records", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "origin", null: false
+    t.string "bean_type", null: false
+    t.string "process_method", null: false
+    t.string "roast_level", null: false
+    t.string "acidity_level", null: false
+    t.string "body_level", null: false
+    t.text "notes"
+    t.string "image"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_coffee_records_on_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -26,4 +41,5 @@ ActiveRecord::Schema[7.1].define(version: 2025_04_11_110441) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "coffee_records", "users"
 end

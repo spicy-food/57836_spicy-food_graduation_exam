@@ -1,0 +1,14 @@
+ja:
+  activerecord:
+    models:
+      coffee_record: コーヒー記録
+    attributes:
+      coffee_record:
+        origin: 産地
+        bean_type: 豆の種類
+        process_method: 精製方法
+        roast_level: ローストレベル
+        acidity_level: 酸味レベル
+        body_level: ボディレベル
+        notes: メモ
+        image: 画像 

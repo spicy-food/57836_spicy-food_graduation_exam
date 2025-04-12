@@ -1,2 +1,29 @@
-<h1>Home#index</h1>
-<p>Find me in app/views/home/index.html.erb</p>
+<div class="container">
+  <div class="text-center py-5">
+    <h1 class="display-4 mb-4">Coffee Records</h1>
+    <p class="lead mb-4">あなたのコーヒー体験を記録しよう</p>
+    
+    <% if user_signed_in? %>
+      <div class="mb-4">
+        <%= link_to "コーヒー記録を作成", new_coffee_record_path, class: "btn btn-primary btn-lg" %>
+      </div>
+      <div>
+        <%= link_to "記録一覧を見る", coffee_records_path, class: "btn btn-outline-primary btn-lg" %>
+      </div>
+    <% else %>
+      <div class="mb-4">
+        <%= link_to "ログイン", new_user_session_path, class: "btn btn-primary btn-lg me-2" %>
+        <%= link_to "新規登録", new_user_registration_path, class: "btn btn-outline-primary btn-lg" %>
+      </div>
+    <% end %>
+  </div>
+
+  <% if user_signed_in? && @recent_records&.any? %>
+    <div class="mt-5">
+      <h2 class="mb-4">最近の記録</h2>
+      <div class="row">
+        <%= render @recent_records %>
+      </div>
+    </div>
+  <% end %>
+</div>
