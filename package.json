@@ -22,6 +22,5 @@
     "defaults"
   ],
   "devDependencies": {
-    "esbuild": "^0.25.2"
   }
 }
