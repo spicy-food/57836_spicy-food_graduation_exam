@@ -1,0 +1,98 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * in this directory and subdirectories. The order is:
+ *
+ * Any CSS (and SCSS, if configured) here will be truly global. The styles
+ * in this file and any sub-files will be included in all pages.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+.pagination {
+  display: flex;
+  padding-left: 0;
+  list-style: none;
+  border-radius: 0.25rem;
+}
+
+.pagination li {
+  margin: 0 8px;
+}
+
+.pagination a, .pagination span {
+  position: relative;
+  display: block;
+  padding: 0.5rem 0.75rem;
+  line-height: 1.25;
+  color: #007bff;
+  background-color: #fff;
+  border: 1px solid #dee2e6;
+  text-decoration: none;
+  border-radius: 4px;
+}
+
+.pagination .active a {
+  color: #fff;
+  background-color: #007bff;
+  border-color: #007bff;
+}
+
+.pagination a:hover {
+  color: #0056b3;
+  text-decoration: none;
+  background-color: #e9ecef;
+  border-color: #dee2e6;
+}
+
+.pagination .disabled span {
+  color: #6c757d;
+  pointer-events: none;
+  background-color: #fff;
+  border-color: #dee2e6;
+}
+
+nav.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+
+  .page {
+    margin: 0 8px;
+    
+    a {
+      padding: 8px 16px;
+      border: 1px solid #dee2e6;
+      color: #007bff;
+      text-decoration: none;
+      border-radius: 4px;
+
+      &:hover {
+        background-color: #e9ecef;
+      }
+    }
+
+    &.current {
+      padding: 8px 16px;
+      background-color: #007bff;
+      color: white;
+      border-radius: 4px;
+    }
+  }
+
+  .prev, .next {
+    margin: 0 8px;
+    
+    a {
+      padding: 8px 16px;
+      border: 1px solid #dee2e6;
+      color: #007bff;
+      text-decoration: none;
+      border-radius: 4px;
+
+      &:hover {
+        background-color: #e9ecef;
+      }
+    }
+  }
+} 

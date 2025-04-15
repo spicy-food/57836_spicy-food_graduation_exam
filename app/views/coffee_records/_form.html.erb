@@ -1,0 +1,21 @@
+<%= form_with(model: coffee_record, local: true) do |f| %>
+  <% if coffee_record.errors.any? %>
+    <div class="alert alert-danger">
+      <ul>
+        <% coffee_record.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <!-- 既存のフォームフィールド -->
+
+  <div class="mb-3">
+    <%= f.label :image, "画像", class: "form-label" %>
+    <%= f.file_field :image, class: "form-control", accept: 'image/*' %>
+    <%= f.hidden_field :image_cache %>
+  </div>
+
+  <!-- 他のフィールド -->
+<% end %> 
