@@ -3,7 +3,7 @@ class CoffeeRecordsController < ApplicationController
   before_action :set_coffee_record, only: [:show, :edit, :update, :destroy]
 
   def index
-    @coffee_records = current_user.coffee_records.order(created_at: :desc)
+    @coffee_records = current_user.coffee_records.order(created_at: :desc).page(params[:page]).per(12)
   end
 
   def show

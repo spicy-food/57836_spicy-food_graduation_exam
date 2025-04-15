@@ -5,4 +5,6 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   
   has_many :coffee_records, dependent: :destroy
+
+  validates :name, presence: true
 end

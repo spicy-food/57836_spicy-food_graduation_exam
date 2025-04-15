@@ -10,14 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_04_12_162245) do
+ActiveRecord::Schema[7.1].define(version: 2025_04_15_113340) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "coffee_records", force: :cascade do |t|
     t.bigint "user_id", null: false
-    t.string "origin", null: false
-    t.string "bean_type", null: false
+    t.string "origin"
+    t.string "bean_type"
     t.string "process_method", null: false
     t.string "roast_level", null: false
     t.string "acidity_level", null: false
@@ -26,6 +26,13 @@ ActiveRecord::Schema[7.1].define(version: 2025_04_12_162245) do
     t.string "image"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "product_name"
+    t.string "name"
+    t.string "variety"
+    t.string "process"
+    t.string "roast"
+    t.string "acidity"
+    t.string "body"
     t.index ["user_id"], name: "index_coffee_records_on_user_id"
   end
 
@@ -37,6 +44,8 @@ ActiveRecord::Schema[7.1].define(version: 2025_04_12_162245) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "username"
+    t.string "name"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
