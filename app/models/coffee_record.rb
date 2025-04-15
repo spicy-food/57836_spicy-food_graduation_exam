@@ -3,10 +3,11 @@ class CoffeeRecord < ApplicationRecord
   
   mount_uploader :image, ImageUploader
 
-  validates :origin, presence: true
-  validates :bean_type, presence: true
-  validates :process_method, presence: true
-  validates :roast_level, presence: true, inclusion: { in: %w[Dark Medium Light] }
-  validates :acidity_level, presence: true, inclusion: { in: %w[High Medium Low] }
-  validates :body_level, presence: true, inclusion: { in: %w[Full Medium Light] }
+  validates :origin, presence: false
+  validates :bean_type, presence: false
+  validates :process_method, presence: false
+  validates :roast_level, presence: false
+  validates :acidity_level, presence: false
+  validates :body_level, presence: false
+  validates :notes, presence: false
 end 
