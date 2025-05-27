@@ -1,0 +1,49 @@
+<div class="container mt-4">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h1>コーヒー記録一覧</h1>
+    <%= link_to "新規記録", new_coffee_record_path, class: "btn btn-primary" %>
+  </div>
+
+  <div class="row">
+    <% @coffee_records.each do |record| %>
+      <div class="col-md-4 mb-4">
+        <%= link_to coffee_record_path(record), class: "text-decoration-none text-dark" do %>
+          <div class="card h-100">
+            <% if record.image.present? %>
+              <%= image_tag record.image.url, class: "card-img-top", style: "height: 200px; object-fit: cover;" %>
+            <% else %>
+              <div class="bg-secondary d-flex align-items-center justify-content-center" style="height: 200px;">
+                <div class="text-center text-white">
+                  <i class="fas fa-coffee fa-3x mb-2"></i>
+                  <div>No Image</div>
+                </div>
+              </div>
+            <% end %>
+            <div class="card-body">
+              <h5 class="card-title"><%= record.origin %></h5>
+              <p class="card-text">
+                <strong>豆の種類:</strong> <%= record.bean_type %><br>
+                <strong>精製方法:</strong> <%= record.process_method %><br>
+                <strong>ローストレベル:</strong> <%= record.roast_level %><br>
+                <strong>酸味レベル:</strong> <%= record.acidity_level %><br>
+                <strong>ボディレベル:</strong> <%= record.body_level %>
+              </p>
+              <div class="btn-group" onclick="event.stopPropagation();">
+                <%= link_to "編集", edit_coffee_record_path(record), class: "btn btn-sm btn-outline-secondary" %>
+                <%= button_to "削除", coffee_record_path(record), 
+                    method: :delete, 
+                    class: "btn btn-sm btn-outline-danger",
+                    form: { style: 'display: inline-block' },
+                    data: { turbo_confirm: "本当に削除しますか？" } %>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="d-flex justify-content-center mt-4">
+    <%= paginate @coffee_records %>
+  </div>
+</div>

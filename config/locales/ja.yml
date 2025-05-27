@@ -1,0 +1,47 @@
+ja:
+  activerecord:
+    models:
+      coffee_record: コーヒー記録
+      user: "ユーザー"
+    attributes:
+      coffee_record:
+        origin: 産地
+        bean_type: 豆の種類
+        process_method: 精製方法
+        roast_level: ローストレベル
+        acidity_level: 酸味レベル
+        body_level: ボディレベル
+        notes: メモ
+        image: 画像
+      user:
+        name: "ユーザー名"
+        email: "メールアドレス"
+        password: "パスワード"
+        password_confirmation: "パスワード（確認用）"
+    errors:
+      models:
+        user:
+          attributes:
+            name:
+              blank: "を入力してください"
+            email:
+              blank: "を入力してください"
+              taken: "は既に使用されています"
+              invalid: "は不正な値です"
+            password:
+              blank: "を入力してください"
+              too_short: "は%{count}文字以上で入力してください"
+            password_confirmation:
+              confirmation: "とパスワードの入力が一致しません"
+  views:
+    pagination:
+      first: "&laquo; 最初"
+      last: "最後 &raquo;"
+      previous: "&lsaquo; 前"
+      next: "次 &rsaquo;"
+      truncate: "..."
+  errors:
+    messages:
+      not_saved:
+        one: "エラーが発生したため %{resource} は保存されませんでした"
+        other: "%{count} 件のエラーが発生したため %{resource} は保存されませんでした" 
