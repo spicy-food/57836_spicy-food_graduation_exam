@@ -6,4 +6,3 @@ bundle exec rake assets:precompile
 bundle exec rake assets:clean
 bundle exec rake db:migrate
 
-docker compose exec web rails generate devise User
