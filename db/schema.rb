@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_06_24_142754) do
+ActiveRecord::Schema[7.1].define(version: 2025_06_28_030212) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -22,6 +22,12 @@ ActiveRecord::Schema[7.1].define(version: 2025_06_24_142754) do
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "bean_type"
+    t.string "process_method"
+    t.string "acidity_level"
+    t.string "body_level"
+    t.text "notes"
+    t.string "image"
     t.index ["user_id"], name: "index_coffee_records_on_user_id"
   end
 
@@ -45,7 +51,6 @@ ActiveRecord::Schema[7.1].define(version: 2025_06_24_142754) do
     t.datetime "locked_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "username"
     t.string "name"
   end
 
