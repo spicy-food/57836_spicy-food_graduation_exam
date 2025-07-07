@@ -28,14 +28,21 @@
                 <strong>酸味レベル:</strong> <%= record.acidity_level %><br>
                 <strong>ボディレベル:</strong> <%= record.body_level %>
               </p>
-              <div class="btn-group" onclick="event.stopPropagation();">
-                <%= link_to "編集", edit_coffee_record_path(record), class: "btn btn-sm btn-outline-secondary" %>
-                <%= button_to "削除", coffee_record_path(record), 
-                    method: :delete, 
-                    class: "btn btn-sm btn-outline-danger",
-                    form: { style: 'display: inline-block' },
-                    data: { turbo_confirm: "本当に削除しますか？" } %>
-              </div>
+              <!-- 投稿者名を追加 -->
+              <small class="text-muted">
+                <i class="fas fa-user"></i> 投稿者: <%= record.user.name %>
+              </small>
+              <!-- 自分の投稿のみ編集・削除ボタンを表示 -->
+              <% if record.user == current_user %>
+                <div class="btn-group mt-2" onclick="event.stopPropagation();">
+                  <%= link_to "編集", edit_coffee_record_path(record), class: "btn btn-sm btn-outline-secondary" %>
+                  <%= button_to "削除", coffee_record_path(record), 
+                      method: :delete, 
+                      class: "btn btn-sm btn-outline-danger",
+                      form: { style: 'display: inline-block' },
+                      data: { turbo_confirm: "本当に削除しますか？" } %>
+                </div>
+              <% end %>
             </div>
           </div>
         <% end %>
