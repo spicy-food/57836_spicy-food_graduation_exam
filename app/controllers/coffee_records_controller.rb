@@ -41,7 +41,7 @@ class CoffeeRecordsController < ApplicationController
   private
 
   def set_coffee_record
-    @coffee_record = current_user.coffee_records.find(params[:id])
+    @coffee_record = CoffeeRecord.find(params[:id])
   end
 
   def coffee_record_params

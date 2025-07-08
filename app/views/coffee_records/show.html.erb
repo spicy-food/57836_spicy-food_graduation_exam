@@ -14,6 +14,13 @@
         <% end %>
         
         <div class="card-body">
+          <!-- 投稿者名を追加 -->
+          <div class="mb-3">
+            <small class="text-muted">
+              <i class="fas fa-user"></i> 投稿者: <%= @coffee_record.user.name %>
+            </small>
+          </div>
+
           <div class="mb-4">
             <h5 class="text-muted mb-3">基本情報</h5>
             <div class="row">
@@ -37,16 +44,44 @@
             </div>
           <% end %>
 
+          <!-- ブックマークボタン -->
+          <% unless @coffee_record.user == current_user %>
+            <div class="mb-3" onclick="event.stopPropagation();">
+              <% if current_user.bookmarked_coffee_records.include?(@coffee_record) %>
+                <%= button_to coffee_record_bookmark_path(@coffee_record), 
+                    method: :delete, 
+                    class: "btn btn-warning",
+                    form: { style: 'display: inline-block' } do %>
+                  <i class="fas fa-bookmark"></i> ブックマーク解除
+                <% end %>
+              <% else %>
+                <%= button_to coffee_record_bookmark_path(@coffee_record), 
+                    method: :post, 
+                    class: "btn btn-outline-warning",
+                    form: { style: 'display: inline-block' } do %>
+                  <i class="far fa-bookmark"></i> ブックマーク
+                <% end %>
+              <% end %>
+            </div>
+          <% end %>
+
           <div class="d-flex justify-content-between align-items-center mt-4">
-            <%= link_to "編集", edit_coffee_record_path(@coffee_record), class: "btn btn-outline-primary" %>
             <%= link_to "戻る", coffee_records_path, class: "btn btn-outline-secondary" %>
-            <%= button_to "削除", coffee_record_path(@coffee_record), 
-                method: :delete, 
-                class: "btn btn-outline-danger",
-                data: { turbo_confirm: "本当に削除しますか？" } %>
+            
+            <!-- 自分の投稿のみ編集・削除ボタンを表示 -->
+            <% if @coffee_record.user == current_user %>
+              <div class="d-flex gap-2">
+                <%= link_to "編集", edit_coffee_record_path(@coffee_record), class: "btn btn-outline-primary" %>
+                <%= button_to "削除", coffee_record_path(@coffee_record), 
+                    method: :delete, 
+                    class: "btn btn-outline-danger",
+                    form: { style: 'display: inline-block' },
+                    data: { turbo_confirm: "本当に削除しますか？" } %>
+              </div>
+            <% end %>
           </div>
         </div>
       </div>
     </div>
   </div>
-</div>
+
