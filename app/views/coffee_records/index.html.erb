@@ -4,6 +4,27 @@
     <%= link_to "新規記録", new_coffee_record_path, class: "btn btn-primary" %>
   </div>
 
+  <%= form_with url: coffee_records_path, method: :get, local: true do |f| %>
+    <div class="row mb-3">
+      <div class="col">
+        <%= f.label :name, "コーヒー名" %>
+        <%= f.text_field :name, value: params[:name], class: "form-control" %>
+      </div>
+      <div class="col">
+        <%= f.label :origin, "産地" %>
+        <%= f.text_field :origin, value: params[:origin], class: "form-control" %>
+      </div>
+      <div class="col">
+        <%= f.label :roast_level, "焙煎度" %>
+        <%= f.select :roast_level, options_for_select(CoffeeRecord::ROAST_LEVELS, params[:roast_level]), include_blank: true, class: "form-control" %>
+      </div>
+      <div class="col-auto align-self-end">
+        <%= f.submit "検索", class: "btn btn-primary" %>
+        <%= link_to "クリア", coffee_records_path, class: "btn btn-secondary" %>
+      </div>
+    </div>
+  <% end %>
+
   <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
     <% @coffee_records.each do |record| %>
       <div class="col">

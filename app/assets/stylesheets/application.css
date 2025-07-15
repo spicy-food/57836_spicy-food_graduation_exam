@@ -136,3 +136,9 @@ nav.pagination {
 .mb-3 {
   position: relative;
 }
+
+  .form-control, .form-select {
+    min-height: 38px !important;
+    height: 38px !important;
+    box-sizing: border-box;
+  }
