@@ -135,7 +135,8 @@ function setupAutocomplete(input, suggestions) {
       suggestionList.appendChild(item);
     });
     
-    suggestionList.style.display = 'block';
+    suggestionList.style.setProperty('display', 'block', 'important');
+    suggestionList.style.background = 'yellow'; 
     currentFocus = -1;
   }
   
