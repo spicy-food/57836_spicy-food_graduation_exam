@@ -1,4 +1,16 @@
 class CoffeeRecord < ApplicationRecord
+  # ここに定数を追加
+  ROAST_LEVELS = [
+    "ライトロースト",
+    "シナモンロースト",
+    "ミディアムロースト",
+    "ハイロースト",
+    "シティロースト",
+    "フルシティロースト",
+    "フレンチロースト",
+    "イタリアンロースト"
+  ]
+
   belongs_to :user
   mount_uploader :image, ImageUploader
 

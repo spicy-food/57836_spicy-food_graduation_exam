@@ -4,6 +4,14 @@ class CoffeeRecordsController < ApplicationController
 
   def index
     @coffee_records = CoffeeRecord.includes(:user).order(created_at: :desc).page(params[:page]).per(12)
+
+    # 部分一致検索
+  @coffee_records = @coffee_records.where("name LIKE ?", "%#{params[:name]}%") if params[:name].present?
+  @coffee_records = @coffee_records.where("origin LIKE ?", "%#{params[:origin]}%") if params[:origin].present?
+  @coffee_records = @coffee_records.where(roast_level: params[:roast_level]) if params[:roast_level].present?
+
+  # ページネーション（kaminariの場合）
+  @coffee_records = @coffee_records.page(params[:page]).per(10)
   end
 
   def show
