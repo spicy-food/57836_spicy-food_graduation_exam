@@ -66,6 +66,10 @@ group :test do
   gem "selenium-webdriver"
 end
 
+group :development do
+  gem 'letter_opener'
+end
+
 gem 'cssbundling-rails'
 gem 'jsbundling-rails'
 gem 'devise'
