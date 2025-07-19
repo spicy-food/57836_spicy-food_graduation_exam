@@ -41,7 +41,7 @@ ja:
       next: "次 &rsaquo;"
       truncate: "..."
   errors:
-    messages:
+  messages:
       not_saved:
         one: "エラーが発生したため %{resource} は保存されませんでした"
         other: "%{count} 件のエラーが発生したため %{resource} は保存されませんでした" 
