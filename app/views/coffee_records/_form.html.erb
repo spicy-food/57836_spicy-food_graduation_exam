@@ -1,100 +1,109 @@
-<%= form_with(model: coffee_record, local: true) do |form| %>
-  <div class="mb-3">
-    <%= form.label :origin, "産地", class: "form-label" %>
-    <%= form.text_field :origin, 
-        class: "form-control autocomplete-field", 
-        data: { list: @origins.to_json },
-        list: "origin-list",
-        placeholder: "例: えちおぴあ または エチオピア" %>
-    <datalist id="origin-list">
-      <% @origins.each do |origin| %>
-        <option value="<%= origin %>">
-      <% end %>
-    </datalist>
-  </div>
+<div class="row">
+  <div class="col-12 col-lg-8 mx-auto">
+    <%= form_with(model: coffee_record, local: true) do |form| %>
+      <div class="row g-3">
+        <div class="col-12 col-md-6">
+          <%= form.label :origin, "産地", class: "form-label" %>
+          <%= form.text_field :origin, 
+              class: "form-control autocomplete-field", 
+              data: { list: @origins.to_json },
+              list: "origin-list",
+              placeholder: "例: えちおぴあ または エチオピア" %>
+          <datalist id="origin-list">
+            <% @origins.each do |origin| %>
+              <option value="<%= origin %>">
+            <% end %>
+          </datalist>
+        </div>
 
-  <div class="mb-3">
-    <%= form.label :bean_type, "豆の種類", class: "form-label" %>
-    <%= form.text_field :bean_type, 
-        class: "form-control autocomplete-field", 
-        data: { list: @bean_types.to_json },
-        list: "bean-type-list",
-        placeholder: "例: あらびか または アラビカ" %>
-    <datalist id="bean-type-list">
-      <% @bean_types.each do |type| %>
-        <option value="<%= type %>">
-      <% end %>
-    </datalist>
-  </div>
+        <div class="col-12 col-md-6">
+          <%= form.label :bean_type, "豆の種類", class: "form-label" %>
+          <%= form.text_field :bean_type, 
+              class: "form-control autocomplete-field", 
+              data: { list: @bean_types.to_json },
+              list: "bean-type-list",
+              placeholder: "例: あらびか または アラビカ" %>
+          <datalist id="bean-type-list">
+            <% @bean_types.each do |type| %>
+              <option value="<%= type %>">
+            <% end %>
+          </datalist>
+        </div>
 
-  <div class="mb-3">
-    <%= form.label :process_method, "精製方法", class: "form-label" %>
-    <%= form.text_field :process_method, 
-        class: "form-control autocomplete-field", 
-        data: { list: @process_methods.to_json },
-        list: "process-method-list",
-        placeholder: "例: うぉっしゅど または ウォッシュド" %>
-    <datalist id="process-method-list">
-      <% @process_methods.each do |method| %>
-        <option value="<%= method %>">
-      <% end %>
-    </datalist>
-  </div>
+        <div class="col-12 col-md-6">
+          <%= form.label :process_method, "精製方法", class: "form-label" %>
+          <%= form.text_field :process_method, 
+              class: "form-control autocomplete-field", 
+              data: { list: @process_methods.to_json },
+              list: "process-method-list",
+              placeholder: "例: うぉっしゅど または ウォッシュド" %>
+          <datalist id="process-method-list">
+            <% @process_methods.each do |method| %>
+              <option value="<%= method %>">
+            <% end %>
+          </datalist>
+        </div>
 
-  <div class="mb-3">
-    <%= form.label :roast_level, "ローストレベル", class: "form-label" %>
-    <%= form.text_field :roast_level, 
-        class: "form-control autocomplete-field", 
-        data: { list: @roast_levels.to_json },
-        list: "roast-level-list",
-        placeholder: "例: みでぃあむろーすと または ミディアムロースト" %>
-    <datalist id="roast-level-list">
-      <% @roast_levels.each do |level| %>
-        <option value="<%= level %>">
-      <% end %>
-    </datalist>
-  </div>
+        <div class="col-12 col-md-6">
+          <%= form.label :roast_level, "ローストレベル", class: "form-label" %>
+          <%= form.text_field :roast_level, 
+              class: "form-control autocomplete-field", 
+              data: { list: @roast_levels.to_json },
+              list: "roast-level-list",
+              placeholder: "例: みでぃあむろーすと または ミディアムロースト" %>
+          <datalist id="roast-level-list">
+            <% @roast_levels.each do |level| %>
+              <option value="<%= level %>">
+            <% end %>
+          </datalist>
+        </div>
 
-  <div class="mb-3">
-    <%= form.label :acidity_level, "酸味レベル", class: "form-label" %>
-    <%= form.text_field :acidity_level, 
-        class: "form-control autocomplete-field", 
-        data: { list: @acidity_levels.to_json },
-        list: "acidity-level-list",
-        placeholder: "例: なか または 中" %>
-    <datalist id="acidity-level-list">
-      <% @acidity_levels.each do |level| %>
-        <option value="<%= level %>">
-      <% end %>
-    </datalist>
-  </div>
+        <div class="col-12 col-md-6">
+          <%= form.label :acidity_level, "酸味レベル", class: "form-label" %>
+          <%= form.text_field :acidity_level, 
+              class: "form-control autocomplete-field", 
+              data: { list: @acidity_levels.to_json },
+              list: "acidity-level-list",
+              placeholder: "例: なか または 中" %>
+          <datalist id="acidity-level-list">
+            <% @acidity_levels.each do |level| %>
+              <option value="<%= level %>">
+            <% end %>
+          </datalist>
+        </div>
 
-  <div class="mb-3">
-    <%= form.label :body_level, "ボディレベル", class: "form-label" %>
-    <%= form.text_field :body_level, 
-        class: "form-control autocomplete-field", 
-        data: { list: @body_levels.to_json },
-        list: "body-level-list",
-        placeholder: "例: なか または 中" %>
-    <datalist id="body-level-list">
-      <% @body_levels.each do |level| %>
-        <option value="<%= level %>">
-      <% end %>
-    </datalist>
-  </div>
+        <div class="col-12 col-md-6">
+          <%= form.label :body_level, "ボディレベル", class: "form-label" %>
+          <%= form.text_field :body_level, 
+              class: "form-control autocomplete-field", 
+              data: { list: @body_levels.to_json },
+              list: "body-level-list",
+              placeholder: "例: なか または 中" %>
+          <datalist id="body-level-list">
+            <% @body_levels.each do |level| %>
+              <option value="<%= level %>">
+            <% end %>
+          </datalist>
+        </div>
 
-  <div class="mb-3">
-    <%= form.label :notes, "メモ", class: "form-label" %>
-    <%= form.text_area :notes, class: "form-control", rows: 4 %>
-  </div>
+        <div class="col-12">
+          <%= form.label :notes, "メモ", class: "form-label" %>
+          <%= form.text_area :notes, class: "form-control", rows: 4, placeholder: "コーヒーの感想やメモを記入してください" %>
+        </div>
 
-  <div class="mb-3">
-    <%= form.label :image, "画像", class: "form-label" %>
-    <%= form.file_field :image, class: "form-control" %>
-  </div>
+        <div class="col-12">
+          <%= form.label :image, "画像", class: "form-label" %>
+          <%= form.file_field :image, class: "form-control", accept: "image/*" %>
+          <div class="form-text">JPG、PNG、GIF形式の画像をアップロードできます</div>
+        </div>
 
-  <div class="d-flex gap-2">
-    <%= form.submit "保存", class: "btn btn-primary" %>
-    <%= link_to "戻る", coffee_records_path, class: "btn btn-outline-secondary" %>
+        <div class="col-12">
+          <div class="d-flex flex-column flex-sm-row gap-2">
+            <%= form.submit "保存", class: "btn btn-primary flex-fill" %>
+            <%= link_to "戻る", coffee_records_path, class: "btn btn-outline-secondary flex-fill" %>
+          </div>
+        </div>
+      </div>
+    <% end %>
   </div>
-<% end %>
+</div>
