@@ -1,4 +1,11 @@
 Rails.application.routes.draw do
+  namespace :admin do
+    get 'contacts/index'
+    get 'contacts/show'
+  end
+  get 'contacts/new'
+  get 'contacts/create'
+  get 'contacts/show'
   root 'home#index'
   devise_for :users
   
@@ -15,4 +22,8 @@ Rails.application.routes.draw do
   get "up" => "rails/health#show", as: :rails_health_check
   get 'privacy-policy', to: 'pages#privacy_policy'
   get 'terms-of-service', to: 'pages#terms_of_service'
+  # お問い合わせフォーム
+  get 'contact', to: 'contacts#new'
+  post 'contact', to: 'contacts#create'
+  get 'contact/thanks', to: 'contacts#show'
 end
