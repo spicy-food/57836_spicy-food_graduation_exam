@@ -10,4 +10,8 @@ class User < ApplicationRecord
   has_many :bookmarks, dependent: :destroy
   has_many :bookmarked_coffee_records, through: :bookmarks, source: :coffee_record
   validates :name, presence: true
+
+  def admin?
+    email == 'guuuuumi93@gmail.com'  # 管理者のメールアドレスを指定
+  end
 end

@@ -26,4 +26,9 @@ Rails.application.routes.draw do
   get 'contact', to: 'contacts#new'
   post 'contact', to: 'contacts#create'
   get 'contact/thanks', to: 'contacts#show'
+  # 管理者ページ
+  namespace :admin do
+    get 'dashboard', to: 'dashboard#index'
+    resources :contacts, only: [:index, :show]
+  end
 end

@@ -1,17 +1,10 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Coffee Records</title>
+    <title>Coffee Records - 管理者</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-    <meta property="og:title" content="Coffee Records" />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://あなたのサイトのURL/" />
-    <meta property="og:image" content="https://あなたのサイトのURL/ogp.png" />
-    <meta property="og:description" content="コーヒー記録をみんなでシェアしよう！" />
-    <meta property="og:site_name" content="Coffee Records" />
-    <meta property="og:locale" content="ja_JP" />
 
     <%= favicon_link_tag '/favicon.ico' %>
 
@@ -22,7 +15,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
   </head>
 
-  <body>
+  <body class="d-flex flex-column min-vh-100">
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-3">
       <div class="container">
         <%= link_to root_path, class: "navbar-brand d-flex align-items-center" do %>
@@ -56,16 +49,15 @@
                   <span>新規記録</span>
                 <% end %>
               </li>
-              <!-- 管理者ページへのリンク -->
-              <% if current_user.email == 'guuuuumi93@gmail.com' %>
-                <li class="nav-item">
-                  <%= link_to admin_contacts_path, class: "nav-link d-flex align-items-center" do %>
-                    <i class="fas fa-cog me-1 d-none d-md-inline"></i>
-                    <span>管理者ページ</span>
-                  <% end %>
-                </li>
-              <% end %>
-              <!-- シンプルなログアウトボタン -->
+              <li class="nav-item">
+                <%= link_to admin_contacts_path, class: "nav-link d-flex align-items-center" do %>
+                  <i class="fas fa-cog me-1 d-none d-md-inline"></i>
+                  <span>管理者ページ</span>
+                <% end %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "ダッシュボード", admin_dashboard_path, class: "nav-link d-flex align-items-center" %>
+              </li>    
               <li class="nav-item">
                 <%= button_to destroy_user_session_path, method: :delete, class: "btn btn-link nav-link" do %>
                   <i class="fas fa-sign-out-alt me-1 d-none d-md-inline"></i>
@@ -91,26 +83,28 @@
       </div>
     </nav>
 
-    <div class="container">
-      <% if notice %>
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
-          <%= notice %>
-          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-      <% end %>
-      <% if alert %>
-        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-          <%= alert %>
-          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-      <% end %>
-      
-      <%= yield %>
-    </div>
+    <main class="flex-grow-1">
+      <div class="container-fluid">
+        <% if notice %>
+          <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <%= notice %>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+        <% end %>
+        <% if alert %>
+          <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <%= alert %>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+        <% end %>
+        
+        <%= yield %>
+      </div>
+    </main>
 
     <!-- フッター -->
-    <footer class="bg-dark text-light mt-5 py-4">
-      <div class="container">
+    <footer class="bg-dark text-light py-4 mt-auto">
+      <div class="container-fluid">
         <div class="row">
           <div class="col-md-6">
             <h5>Coffee Records</h5>

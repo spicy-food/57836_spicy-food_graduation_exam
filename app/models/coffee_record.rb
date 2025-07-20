@@ -16,4 +16,8 @@ class CoffeeRecord < ApplicationRecord
 
   has_many :bookmarks, dependent: :destroy
   has_many :bookmarked_users, through: :bookmarks, source: :user
+
+  def can_delete?(user)
+    user.admin? || user == self.user
+  end
 end

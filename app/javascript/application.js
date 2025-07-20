@@ -1,6 +1,5 @@
 import "./controllers"
 import "bootstrap"
-// import "bootstrap-icons"  // この行を削除または修正
 
 console.log("★ application.js loaded!!");
 

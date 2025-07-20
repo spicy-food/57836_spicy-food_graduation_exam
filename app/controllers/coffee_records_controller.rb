@@ -1,7 +1,8 @@
 class CoffeeRecordsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_coffee_record, only: [:show, :edit, :update, :destroy]
-
+  before_action :check_delete_permission, only: [:destroy]
+  
   def index
     @coffee_records = CoffeeRecord.includes(:user).order(created_at: :desc).page(params[:page]).per(12)
 
