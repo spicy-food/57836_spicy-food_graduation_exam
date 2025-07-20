@@ -78,3 +78,12 @@ gem 'carrierwave'
 gem 'fog-aws'
 gem 'mini_magick'
 gem 'kaminari'
+
+group :development, :test do
+  gem 'rspec-rails'
+  gem 'factory_bot_rails'
+  gem 'faker'
+  gem 'shoulda-matchers'
+  gem 'database_cleaner-active_record'
+  gem 'rails-controller-testing'
+end

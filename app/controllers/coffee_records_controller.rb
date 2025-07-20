@@ -2,17 +2,15 @@ class CoffeeRecordsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_coffee_record, only: [:show, :edit, :update, :destroy]
   before_action :check_delete_permission, only: [:destroy]
-  
+
   def index
     @coffee_records = CoffeeRecord.includes(:user).order(created_at: :desc).page(params[:page]).per(12)
 
     # 部分一致検索
-  @coffee_records = @coffee_records.where("name LIKE ?", "%#{params[:name]}%") if params[:name].present?
-  @coffee_records = @coffee_records.where("origin LIKE ?", "%#{params[:origin]}%") if params[:origin].present?
-  @coffee_records = @coffee_records.where(roast_level: params[:roast_level]) if params[:roast_level].present?
-
-  # ページネーション（kaminariの場合）
-  @coffee_records = @coffee_records.page(params[:page]).per(10)
+    @coffee_records = @coffee_records.where("name LIKE ?", "%#{params[:name]}%") if params[:name].present?
+    @coffee_records = @coffee_records.where("origin LIKE ?", "%#{params[:origin]}%") if params[:origin].present?
+    @coffee_records = @coffee_records.where(roast_level: params[:roast_level]) if params[:roast_level].present?
+    @coffee_records = @coffee_records.page(params[:page]).per(10)
   end
 
   def show
@@ -63,6 +61,12 @@ class CoffeeRecordsController < ApplicationController
 
   def set_coffee_record
     @coffee_record = CoffeeRecord.find(params[:id])
+  end
+
+  def check_delete_permission
+    unless @coffee_record.can_delete?(current_user)
+      redirect_to coffee_records_path, alert: '削除権限がありません'
+    end
   end
 
   def coffee_record_params

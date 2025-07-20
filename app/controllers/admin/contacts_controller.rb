@@ -1,7 +1,7 @@
 class Admin::ContactsController < ApplicationController
-  layout 'admin'
   before_action :authenticate_user!
   before_action :check_admin
+  layout 'admin'
   
   def index
     @contacts = Contact.order(created_at: :desc).page(params[:page])
