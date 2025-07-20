@@ -1,29 +1,41 @@
 class CoffeeRecordsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_coffee_record, only: [:show, :edit, :update, :destroy]
+  before_action :set_coffee_record, only: %i[show edit update destroy]
   before_action :check_delete_permission, only: [:destroy]
 
   def index
     @coffee_records = CoffeeRecord.includes(:user).order(created_at: :desc).page(params[:page]).per(12)
 
     # 部分一致検索
-    @coffee_records = @coffee_records.where("name LIKE ?", "%#{params[:name]}%") if params[:name].present?
-    @coffee_records = @coffee_records.where("origin LIKE ?", "%#{params[:origin]}%") if params[:origin].present?
+    @coffee_records = @coffee_records.where('name LIKE ?', "%#{params[:name]}%") if params[:name].present?
+    @coffee_records = @coffee_records.where('origin LIKE ?', "%#{params[:origin]}%") if params[:origin].present?
     @coffee_records = @coffee_records.where(roast_level: params[:roast_level]) if params[:roast_level].present?
     @coffee_records = @coffee_records.page(params[:page]).per(10)
   end
 
-  def show
-  end
+  def show; end
 
   def new
     @coffee_record = current_user.coffee_records.build
-    @origins = ['エチオピア', 'ケニア', 'コロンビア', 'ブラジル', 'グアテマラ', 'コスタリカ', 'パナマ', 'ジャマイカ', 'インドネシア', 'ベトナム', 'インド', 'ペルー', 'ボリビア', 'エルサルバドル', 'ホンジュラス', 'ニカラグア', 'メキシコ', 'ハワイ', 'タンザニア', 'ルワンダ']
-    @bean_types = ['アラビカ', 'ロブスタ', 'リベリカ', 'ブルボン', 'ティピカ', 'カトゥーラ', 'カツアイ', 'ムンドノーボ', 'パカマラ', 'ゲイシャ', 'エチオピアンヒエラルム', 'ケニアSL28', 'ケニアSL34']
-    @process_methods = ['ウォッシュド', 'ナチュラル', 'ハニー', 'アナエロビック', 'カーボニックマセレーション', 'パルプドナチュラル']
-    @roast_levels = ['ライトロースト', 'シナモンロースト', 'ミディアムロースト', 'ハイロースト', 'シティロースト', 'フルシティロースト', 'フレンチロースト', 'イタリアンロースト']
-    @acidity_levels = ['低', '中低', '中', '中高', '高']
-    @body_levels = ['軽い', '中軽', '中', '中重', '重い']
+    @origins = %w[エチオピア ケニア コロンビア ブラジル グアテマラ コスタリカ パナマ ジャマイカ インドネシア ベトナム インド ペルー
+                  ボリビア エルサルバドル ホンジュラス ニカラグア メキシコ ハワイ タンザニア ルワンダ]
+    @bean_types = %w[アラビカ ロブスタ リベリカ ブルボン ティピカ カトゥーラ カツアイ ムンドノーボ パカマラ ゲイシャ エチオピアンヒエラルム
+                     ケニアSL28 ケニアSL34]
+    @process_methods = %w[ウォッシュド ナチュラル ハニー アナエロビック カーボニックマセレーション パルプドナチュラル]
+    @roast_levels = %w[ライトロースト シナモンロースト ミディアムロースト ハイロースト シティロースト フルシティロースト フレンチロースト イタリアンロースト]
+    @acidity_levels = %w[低 中低 中 中高 高]
+    @body_levels = %w[軽い 中軽 中 中重 重い]
+  end
+
+  def edit
+    @origins = %w[エチオピア ケニア コロンビア ブラジル グアテマラ コスタリカ パナマ ジャマイカ インドネシア ベトナム インド ペルー
+                  ボリビア エルサルバドル ホンジュラス ニカラグア メキシコ ハワイ タンザニア ルワンダ]
+    @bean_types = %w[アラビカ ロブスタ リベリカ ブルボン ティピカ カトゥーラ カツアイ ムンドノーボ パカマラ ゲイシャ エチオピアンヒエラルム
+                     ケニアSL28 ケニアSL34]
+    @process_methods = %w[ウォッシュド ナチュラル ハニー アナエロビック カーボニックマセレーション パルプドナチュラル]
+    @roast_levels = %w[ライトロースト シナモンロースト ミディアムロースト ハイロースト シティロースト フルシティロースト フレンチロースト イタリアンロースト]
+    @acidity_levels = %w[低 中低 中 中高 高]
+    @body_levels = %w[軽い 中軽 中 中重 重い]
   end
 
   def create
@@ -33,15 +45,6 @@ class CoffeeRecordsController < ApplicationController
     else
       render :new, status: :unprocessable_entity
     end
-  end
-
-  def edit
-    @origins = ['エチオピア', 'ケニア', 'コロンビア', 'ブラジル', 'グアテマラ', 'コスタリカ', 'パナマ', 'ジャマイカ', 'インドネシア', 'ベトナム', 'インド', 'ペルー', 'ボリビア', 'エルサルバドル', 'ホンジュラス', 'ニカラグア', 'メキシコ', 'ハワイ', 'タンザニア', 'ルワンダ']
-    @bean_types = ['アラビカ', 'ロブスタ', 'リベリカ', 'ブルボン', 'ティピカ', 'カトゥーラ', 'カツアイ', 'ムンドノーボ', 'パカマラ', 'ゲイシャ', 'エチオピアンヒエラルム', 'ケニアSL28', 'ケニアSL34']
-    @process_methods = ['ウォッシュド', 'ナチュラル', 'ハニー', 'アナエロビック', 'カーボニックマセレーション', 'パルプドナチュラル']
-    @roast_levels = ['ライトロースト', 'シナモンロースト', 'ミディアムロースト', 'ハイロースト', 'シティロースト', 'フルシティロースト', 'フレンチロースト', 'イタリアンロースト']
-    @acidity_levels = ['低', '中低', '中', '中高', '高']
-    @body_levels = ['軽い', '中軽', '中', '中重', '重い']
   end
 
   def update
@@ -64,9 +67,9 @@ class CoffeeRecordsController < ApplicationController
   end
 
   def check_delete_permission
-    unless @coffee_record.can_delete?(current_user)
-      redirect_to coffee_records_path, alert: '削除権限がありません'
-    end
+    return if @coffee_record.can_delete?(current_user)
+
+    redirect_to coffee_records_path, alert: '削除権限がありません'
   end
 
   def coffee_record_params

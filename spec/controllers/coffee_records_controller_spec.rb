@@ -58,9 +58,9 @@ RSpec.describe CoffeeRecordsController, type: :controller do
 
     context 'with valid parameters' do
       it 'creates a new coffee record' do
-        expect {
+        expect do
           post :create, params: valid_params
-        }.to change(CoffeeRecord, :count).by(1)
+        end.to change(CoffeeRecord, :count).by(1)
       end
 
       it 'redirects to coffee_records_path' do
@@ -71,14 +71,14 @@ RSpec.describe CoffeeRecordsController, type: :controller do
 
     context 'with invalid parameters' do
       it 'does not create a coffee record when roast_level is invalid' do
-        expect {
-          post :create, params: { coffee_record: { 
+        expect do
+          post :create, params: { coffee_record: {
             origin: 'エチオピア',
             bean_type: 'アラビカ',
             process_method: 'ウォッシュド',
-            roast_level: '無効な焙煎度'  # 無効な焙煎度を指定
+            roast_level: '無効な焙煎度' # 無効な焙煎度を指定
           } }
-        }.not_to change(CoffeeRecord, :count)
+        end.not_to change(CoffeeRecord, :count)
       end
     end
   end
@@ -88,9 +88,9 @@ RSpec.describe CoffeeRecordsController, type: :controller do
 
     context 'when user owns the record' do
       it 'deletes the coffee record' do
-        expect {
+        expect do
           delete :destroy, params: { id: coffee_record.id }
-        }.to change(CoffeeRecord, :count).by(-1)
+        end.to change(CoffeeRecord, :count).by(-1)
       end
 
       it 'redirects to coffee_records_path' do
@@ -103,9 +103,9 @@ RSpec.describe CoffeeRecordsController, type: :controller do
       before { sign_in admin_user }
 
       it 'deletes the coffee record' do
-        expect {
+        expect do
           delete :destroy, params: { id: coffee_record.id }
-        }.to change(CoffeeRecord, :count).by(-1)
+        end.to change(CoffeeRecord, :count).by(-1)
       end
     end
 
@@ -113,9 +113,9 @@ RSpec.describe CoffeeRecordsController, type: :controller do
       before { sign_in other_user }
 
       it 'does not delete the coffee record' do
-        expect {
+        expect do
           delete :destroy, params: { id: coffee_record.id }
-        }.not_to change(CoffeeRecord, :count)
+        end.not_to change(CoffeeRecord, :count)
       end
 
       it 'redirects to coffee_records_path with alert' do

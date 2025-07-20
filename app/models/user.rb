@@ -3,7 +3,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-  
+
   has_many :coffee_records, dependent: :destroy
   has_many :bookmarks, dependent: :destroy
   has_many :bookmarked_coffee_records, through: :bookmarks, source: :coffee_record

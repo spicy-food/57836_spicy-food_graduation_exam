@@ -2,9 +2,9 @@ require 'rails_helper'
 
 RSpec.describe CoffeeRecord, type: :model do
   describe 'associations' do
-    it { should belong_to(:user) }
-    it { should have_many(:bookmarks).dependent(:destroy) }
-    it { should have_many(:bookmarked_users).through(:bookmarks).source(:user) }
+    it { is_expected.to belong_to(:user) }
+    it { is_expected.to have_many(:bookmarks).dependent(:destroy) }
+    it { is_expected.to have_many(:bookmarked_users).through(:bookmarks).source(:user) }
   end
 
   describe 'constants' do

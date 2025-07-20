@@ -2,14 +2,14 @@ require 'rails_helper'
 
 RSpec.describe User, type: :model do
   describe 'validations' do
-    it { should validate_presence_of(:name) }
-    it { should validate_presence_of(:email) }
+    it { is_expected.to validate_presence_of(:name) }
+    it { is_expected.to validate_presence_of(:email) }
   end
 
   describe 'associations' do
-    it { should have_many(:coffee_records).dependent(:destroy) }
-    it { should have_many(:bookmarks).dependent(:destroy) }
-    it { should have_many(:bookmarked_coffee_records).through(:bookmarks).source(:coffee_record) }
+    it { is_expected.to have_many(:coffee_records).dependent(:destroy) }
+    it { is_expected.to have_many(:bookmarks).dependent(:destroy) }
+    it { is_expected.to have_many(:bookmarked_coffee_records).through(:bookmarks).source(:coffee_record) }
   end
 
   describe '#admin?' do

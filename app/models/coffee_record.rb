@@ -1,14 +1,15 @@
 class CoffeeRecord < ApplicationRecord
-  ROAST_LEVELS = [
-    "ライトロースト",
-    "シナモンロースト",
-    "ミディアムロースト",
-    "ハイロースト",
-    "シティロースト",
-    "フルシティロースト",
-    "フレンチロースト",
-    "イタリアンロースト"
-  ]
+  # ここに定数を追加
+  ROAST_LEVELS = %w[
+    ライトロースト
+    シナモンロースト
+    ミディアムロースト
+    ハイロースト
+    シティロースト
+    フルシティロースト
+    フレンチロースト
+    イタリアンロースト
+  ].freeze
 
   belongs_to :user
   mount_uploader :image, ImageUploader
@@ -16,6 +17,7 @@ class CoffeeRecord < ApplicationRecord
   has_many :bookmarks, dependent: :destroy
   has_many :bookmarked_users, through: :bookmarks, source: :user
 
+  # バリデーションを追加
   validates :origin, presence: true
   validates :bean_type, presence: true
   validates :process_method, presence: true

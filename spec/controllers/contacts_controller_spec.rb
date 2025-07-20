@@ -28,9 +28,9 @@ RSpec.describe ContactsController, type: :controller do
 
     context 'with valid parameters' do
       it 'creates a new contact' do
-        expect {
+        expect do
           post :create, params: valid_params
-        }.to change(Contact, :count).by(1)
+        end.to change(Contact, :count).by(1)
       end
 
       it 'redirects to contact_thanks_path' do
@@ -41,9 +41,9 @@ RSpec.describe ContactsController, type: :controller do
 
     context 'with invalid parameters' do
       it 'does not create a contact' do
-        expect {
+        expect do
           post :create, params: { contact: { name: '' } }
-        }.not_to change(Contact, :count)
+        end.not_to change(Contact, :count)
       end
 
       it 'renders new template' do

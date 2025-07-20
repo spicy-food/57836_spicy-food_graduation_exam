@@ -1,6 +1,14 @@
 class BookmarksController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_coffee_record, only: [:create, :destroy]
+  before_action :set_coffee_record, only: %i[create destroy]
+
+  def index
+    @bookmarked_records = current_user.bookmarked_coffee_records
+                                      .includes(:user)
+                                      .order(created_at: :desc)
+                                      .page(params[:page])
+                                      .per(12)
+  end
 
   def create
     @bookmark = current_user.bookmarks.build(coffee_record: @coffee_record)
@@ -18,10 +26,6 @@ class BookmarksController < ApplicationController
     else
       redirect_back(fallback_location: coffee_records_path, alert: 'ブックマークの削除に失敗しました')
     end
-  end
-
-  def index
-    @bookmarked_records = current_user.bookmarked_coffee_records.includes(:user).order(created_at: :desc).page(params[:page]).per(12)
   end
 
   private
