@@ -43,6 +43,9 @@ group :development, :test do
   gem 'rubocop', require: false
   gem 'rubocop-rails', require: false
   gem 'rubocop-rspec', require: false
+
+  # セキュリティ監査
+  gem 'bundle-audit'
 end
 
 group :development do
