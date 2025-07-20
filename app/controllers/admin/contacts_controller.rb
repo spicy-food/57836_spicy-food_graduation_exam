@@ -16,8 +16,7 @@ module Admin
     private
 
     def check_admin
-      # 簡単な管理者チェック
-      return if current_user.email == 'guuuuumi93@gmail.com' # 管理者のメールアドレス
+      return if current_user.admin?
 
       redirect_to root_path, alert: 'アクセス権限がありません'
     end
