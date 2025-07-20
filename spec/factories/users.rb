@@ -6,7 +6,7 @@ FactoryBot.define do
     name { Faker::Name.name }
 
     trait :admin do
-      email { 'admin@example.com' }
+      email { 'guuuuumi93@gmail.com' }
     end
   end
 end
