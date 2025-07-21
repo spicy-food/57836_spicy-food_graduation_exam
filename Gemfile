@@ -14,6 +14,7 @@ gem "puma", ">= 5.0"
 
 # 認証
 gem "devise"
+gem "omniauth-google-oauth2"
 
 # 画像アップロード
 gem "carrierwave"
@@ -82,3 +83,5 @@ gem "net-imap", "~> 0.5.7"
 gem "nokogiri", ">= 1.18.8"
 gem "rack", ">= 3.1.16"
 gem "rack-session", ">= 2.1.1"
+gem "importmap-rails"
+gem "sprockets-rails"

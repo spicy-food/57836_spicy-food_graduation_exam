@@ -12,9 +12,9 @@
           <datalist id="origin-list">
             <% @origins.each do |origin| %>
               <option value="<%= origin %>">
-            <% end %>
+        <% end %>
           </datalist>
-        </div>
+    </div>
 
         <div class="col-12 col-md-6">
           <%= form.label :bean_type, "豆の種類", class: "form-label" %>
@@ -26,9 +26,9 @@
           <datalist id="bean-type-list">
             <% @bean_types.each do |type| %>
               <option value="<%= type %>">
-            <% end %>
+  <% end %>
           </datalist>
-        </div>
+  </div>
 
         <div class="col-12 col-md-6">
           <%= form.label :process_method, "精製方法", class: "form-label" %>
@@ -42,7 +42,7 @@
               <option value="<%= method %>">
             <% end %>
           </datalist>
-        </div>
+    </div>
 
         <div class="col-12 col-md-6">
           <%= form.label :roast_level, "ローストレベル", class: "form-label" %>
@@ -56,7 +56,7 @@
               <option value="<%= level %>">
             <% end %>
           </datalist>
-        </div>
+  </div>
 
         <div class="col-12 col-md-6">
           <%= form.label :acidity_level, "酸味レベル", class: "form-label" %>
@@ -70,7 +70,7 @@
               <option value="<%= level %>">
             <% end %>
           </datalist>
-        </div>
+    </div>
 
         <div class="col-12 col-md-6">
           <%= form.label :body_level, "ボディレベル", class: "form-label" %>
@@ -84,26 +84,26 @@
               <option value="<%= level %>">
             <% end %>
           </datalist>
-        </div>
+  </div>
 
         <div class="col-12">
           <%= form.label :notes, "メモ", class: "form-label" %>
           <%= form.text_area :notes, class: "form-control", rows: 4, placeholder: "コーヒーの感想やメモを記入してください" %>
-        </div>
+    </div>
 
         <div class="col-12">
           <%= form.label :image, "画像", class: "form-label" %>
           <%= form.file_field :image, class: "form-control", accept: "image/*" %>
           <div class="form-text">JPG、PNG、GIF形式の画像をアップロードできます</div>
-        </div>
+  </div>
 
         <div class="col-12">
           <div class="d-flex flex-column flex-sm-row gap-2">
             <%= form.submit "保存", class: "btn btn-primary flex-fill" %>
             <%= link_to "戻る", coffee_records_path, class: "btn btn-outline-secondary flex-fill" %>
-          </div>
-        </div>
-      </div>
+    </div>
+    </div>
+  </div>
     <% end %>
   </div>
 </div>
