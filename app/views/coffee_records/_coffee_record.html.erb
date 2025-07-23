@@ -1,0 +1,24 @@
+<div class="col-md-4 mb-4">
+  <%= link_to coffee_record_path(coffee_record), class: "text-decoration-none text-dark" do %>
+  <div class="card h-100">
+      <div style="background-color: #f8f9fa; height: 200px;">
+    <% if coffee_record.image.present? %>
+      <%= image_tag coffee_record.image.url, class: "card-img-top", style: "height: 200px; object-fit: cover;" %>
+        <% end %>
+      </div>
+      <div class="card-body">
+        <h5 class="card-title mb-1"><%= coffee_record.origin %></h5>
+        <p class="card-text text-muted mb-2"><%= coffee_record.bean_type %></p>
+        <% if coffee_record.roast_level.present? %>
+          <p class="card-text">
+            <small class="text-muted">
+              ロースト: <%= coffee_record.roast_level %> |
+              酸味: <%= coffee_record.acidity_level %> |
+              ボディ: <%= coffee_record.body_level %>
+            </small>
+          </p>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+</div> 

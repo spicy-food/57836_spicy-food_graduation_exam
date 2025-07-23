@@ -1,0 +1,2 @@
+module CoffeeRecordsHelper
+end

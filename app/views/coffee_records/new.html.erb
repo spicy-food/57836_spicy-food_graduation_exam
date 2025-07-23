@@ -1,0 +1,84 @@
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8 offset-lg-2">
+      <h1 class="mb-4">新規コーヒー記録</h1>
+
+      <%= form_with(model: @coffee_record, local: true) do |f| %>
+        <% if @coffee_record.errors.any? %>
+          <div class="alert alert-danger">
+            <ul class="mb-0">
+              <% @coffee_record.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+
+        <div class="mb-3">
+          <%= f.label :image, "画像", class: "form-label" %>
+          <%= f.file_field :image, class: "form-control", accept: 'image/*' %>
+        </div>
+
+        <div class="mb-3">
+          <%= f.label :origin, "産地", class: "form-label" %>
+          <%= f.text_field :origin, 
+              class: "form-control", 
+              placeholder: "例: えちおぴあ または エチオピア",
+              autocomplete: "off" %>
+        </div>
+
+        <div class="mb-3">
+          <%= f.label :bean_type, "豆の種類", class: "form-label" %>
+          <%= f.text_field :bean_type, 
+              class: "form-control", 
+              placeholder: "例: あらびか または アラビカ",
+              autocomplete: "off" %>
+        </div>
+
+        <div class="mb-3">
+          <%= f.label :process_method, "精製方法", class: "form-label" %>
+          <%= f.text_field :process_method, 
+              class: "form-control", 
+              placeholder: "例: うぉっしゅど または ウォッシュド",
+              autocomplete: "off" %>
+        </div>
+
+        <div class="mb-3">
+          <%= f.label :roast_level, "ローストレベル", class: "form-label" %>
+          <%= f.select :roast_level,
+               [['ライトロースト', 'ライトロースト'], ['シナモンロースト', 'シナモンロースト'], ['ミディアムロースト', 'ミディアムロースト'], 
+                ['ハイロースト', 'ハイロースト'], ['シティロースト', 'シティロースト'], ['フルシティロースト', 'フルシティロースト'], 
+                ['フレンチロースト', 'フレンチロースト'], ['イタリアンロースト', 'イタリアンロースト']],
+               { prompt: "選択してください" },
+               class: "form-select" %>
+        </div>
+
+        <div class="mb-3">
+          <%= f.label :acidity_level, "酸味レベル", class: "form-label" %>
+          <%= f.select :acidity_level,
+               [['低', '低'], ['中低', '中低'], ['中', '中'], ['中高', '中高'], ['高', '高']],
+               { prompt: "選択してください" },
+               class: "form-select" %>
+        </div>
+
+        <div class="mb-3">
+          <%= f.label :body_level, "ボディレベル", class: "form-label" %>
+          <%= f.select :body_level,
+               [['軽い', '軽い'], ['中軽', '中軽'], ['中', '中'], ['中重', '中重'], ['重い', '重い']],
+               { prompt: "選択してください" },
+               class: "form-select" %>
+        </div>
+
+        <div class="mb-3">
+          <%= f.label :notes, "メモ", class: "form-label" %>
+          <%= f.text_area :notes, class: "form-control", rows: 3 %>
+        </div>
+
+        <div class="mb-3">
+          <%= f.submit "記録を作成", class: "btn btn-primary" %>
+          <%= link_to "戻る", coffee_records_path, class: "btn btn-secondary" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

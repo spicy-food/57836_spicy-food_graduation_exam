@@ -1,0 +1,53 @@
+  <h1 class="mb-4">
+    <i class="fas fa-envelope me-2"></i>お問い合わせ管理
+  </h1>
+
+  <div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-header">
+          <h5 class="mb-0">お問い合わせ一覧</h5>
+        </div>
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table table-hover">
+              <thead>
+                <tr>
+                  <th>日時</th>
+                  <th>名前</th>
+                  <th>メール</th>
+                  <th>件名</th>
+                  <th>カテゴリ</th>
+                  <th>ステータス</th>
+                  <th>操作</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% @contacts.each do |contact| %>
+                  <tr class="<%= 'table-warning' unless contact.read? %>">
+                    <td><%= contact.created_at.strftime("%Y/%m/%d %H:%M") %></td>
+                    <td><%= contact.name %></td>
+                    <td><%= contact.email %></td>
+                    <td><%= truncate(contact.subject, length: 30) %></td>
+                    <td><%= contact.category %></td>
+                    <td>
+                      <% if contact.read? %>
+                        <span class="badge bg-success">既読</span>
+                      <% else %>
+                        <span class="badge bg-warning">未読</span>
+                      <% end %>
+                    </td>
+                    <td>
+                      <%= link_to "詳細", admin_contact_path(contact), class: "btn btn-sm btn-outline-primary" %>
+                    </td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+          <div class="d-flex justify-content-center mt-3">
+            <%= paginate @contacts %>
+          </div>
+        </div>
+      </div>
+    </div>
