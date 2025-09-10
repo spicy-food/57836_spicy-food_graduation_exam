@@ -44,9 +44,26 @@
               <%= f.password_field :password, autocomplete: "new-password", class: "form-control form-control-lg" %>
             </div>
 
-            <div class="mb-4">
+            <div class="mb-3">
               <%= f.label :password_confirmation, "パスワード（確認）", class: "form-label fw-semibold" %>
               <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control form-control-lg" %>
+            </div>
+
+            <!-- セキュリティ質問の追加 -->
+            <div class="mb-3">
+              <%= f.label :security_question, "セキュリティ質問", class: "form-label fw-semibold" %>
+              <%= f.select :security_question, [
+                ["あなたの出身地は？", "birthplace"],
+                ["あなたのペットの名前は？", "pet_name"],
+                ["あなたの好きな食べ物は？", "favorite_food"],
+                ["あなたの好きな色は？", "favorite_color"],
+                ["あなたの趣味は？", "hobby"]
+              ], { prompt: "質問を選択してください" }, { class: "form-control form-control-lg" } %>
+            </div>
+
+            <div class="mb-4">
+              <%= f.label :security_answer, "回答", class: "form-label fw-semibold" %>
+              <%= f.text_field :security_answer, class: "form-control form-control-lg" %>
             </div>
 
             <div class="d-grid gap-2">

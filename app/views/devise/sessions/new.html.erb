@@ -47,12 +47,14 @@
               Googleでログイン
             <% end %>
           </div>
-
-          <div class="text-center mt-4">
-            <%= link_to "新規登録", new_registration_path(resource_name), class: "text-decoration-none fw-semibold" %>
-          </div>
         </div>
       </div>
     </div>
   </div>
+</div>
+<!-- 既存のコード... -->
+<div class="text-center mt-4">
+  <%= link_to "新規登録", new_registration_path(resource_name), class: "text-decoration-none fw-semibold" %>
+  <span class="mx-2">|</span>
+  <%= link_to "パスワードを忘れた場合", password_reset_path, class: "text-decoration-none fw-semibold" %>
 </div>
