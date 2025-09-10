@@ -16,6 +16,4 @@ test:
 
 production:
   <<: *default
-  database: coffee_records_production
-  username: coffee_records
   url: <%= ENV['DATABASE_URL'] %>
