@@ -1,54 +1,138 @@
-  <div class="text-center py-5">
-    <h1 class="display-4 mb-4">Coffee Records</h1>
-    <p class="lead mb-4">あなたのコーヒー体験を記録しよう</p>
-    
-    <% if user_signed_in? %>
-      <div class="mb-4">
-        <%= link_to "コーヒー記録を作成", new_coffee_record_path, class: "btn btn-primary btn-lg" %>
-      </div>
-      <div>
-        <%= link_to "記録一覧を見る", coffee_records_path, class: "btn btn-outline-primary btn-lg" %>
-      </div>
-    <% else %>
-      <div class="mb-4">
-        <%= link_to "ログイン", new_user_session_path, class: "btn btn-primary btn-lg me-2" %>
-        <%= link_to "新規登録", new_user_registration_path, class: "btn btn-outline-primary btn-lg" %>
-      </div>
-    <% end %>
-  </div>
-
-  <% if user_signed_in? && @recent_records&.any? %>
-    <div class="mt-5">
-      <h2 class="mb-4">最近の記録</h2>
-      <div class="row">
-      <% @recent_records.each do |record| %>
-        <div class="col-md-4 mb-4">
-          <%= link_to coffee_record_path(record), class: "text-decoration-none text-dark" do %>
-            <div class="card h-100">
-              <% if record.image.present? %>
-                <%= image_tag record.image.url, class: "card-img-top", style: "height: 200px; object-fit: cover;" %>
-              <% else %>
-                <div class="bg-secondary d-flex align-items-center justify-content-center" style="height: 200px;">
-                  <div class="text-center text-white">
-                    <i class="fas fa-coffee fa-3x mb-2"></i>
-                    <div>No Image</div>
-                  </div>
-                </div>
-              <% end %>
-              <div class="card-body">
-                <h5 class="card-title"><%= record.origin %></h5>
-                <p class="card-text">
-                  <strong>豆の種類:</strong> <%= record.bean_type %><br>
-                  <strong>精製方法:</strong> <%= record.process_method %><br>
-                  <strong>ローストレベル:</strong> <%= record.roast_level %><br>
-                  <strong>酸味レベル:</strong> <%= record.acidity_level %><br>
-                  <strong>ボディレベル:</strong> <%= record.body_level %>
-                </p>
+<!-- ヒーローセクション -->
+<div class="hero-section position-relative text-white mb-5" style="height: 40vh; background:url('<%= asset_path("hero_coffee.jpg") %>') center/cover no-repeat;">
+  <div class="hero-overlay h-100 w-100" style="background:rgba(0,0,0,0.4);">
+    <div class="container h-100 d-flex align-items-center">
+      <div class="hero-content text-center w-100">
+        <h1 class="display-4 fw-bold mb-3">Coffee Records</h1>
+        <p class="lead mb-4">あなたのコーヒー体験を、美しく記録しよう</p>
+        <div class="hero-features">
+          <span class="badge bg-light text-dark me-2">📝 記録</span>
+          <span class="badge bg-light text-dark me-2">🤝 共有</span>
+          <span class="badge bg-light text-dark me-2">📊 分析</span>
+        </div>
       </div>
     </div>
-  <% end %>
+  </div>
 </div>
-      <% end %>
+
+<!-- 機能紹介セクション -->
+<section class="features-section py-5">
+  <div class="container">
+    <div class="row text-center mb-5">
+      <div class="col-12">
+        <h2 class="display-5 fw-bold mb-3">アプリの機能</h2>
+        <p class="lead text-muted">Coffee Recordsでできること</p>
+      </div>
+    </div>
+    <div class="row g-4">
+      <div class="col-md-4">
+        <div class="card h-100 border-0 shadow-sm">
+          <div class="card-body text-center p-4">
+            <div class="feature-icon bg-primary text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
+              <i class="fas fa-coffee fa-2x"></i>
+            </div>
+            <h5 class="card-title">コーヒー記録</h5>
+            <p class="card-text text-muted">飲んだコーヒーの詳細を記録し、あなただけのコーヒーライブラリを作成できます。</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card h-100 border-0 shadow-sm">
+          <div class="card-body text-center p-4">
+            <div class="feature-icon bg-success text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
+              <i class="fas fa-share-alt fa-2x"></i>
+            </div>
+            <h5 class="card-title">シェア機能</h5>
+            <p class="card-text text-muted">他のユーザーとコーヒー記録を共有し、新しい発見を見つけることができます。</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card h-100 border-0 shadow-sm">
+          <div class="card-body text-center p-4">
+            <div class="feature-icon bg-warning text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
+              <i class="fas fa-bookmark fa-2x"></i>
+            </div>
+            <h5 class="card-title">ブックマーク</h5>
+            <p class="card-text text-muted">気に入ったコーヒー記録をブックマークして、後で簡単にアクセスできます。</p>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
+</section>
+
+<!-- アクションボタンセクション -->
+<section class="action-section py-5 bg-light">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-8 text-center">
+        <h2 class="display-6 fw-bold mb-4">今すぐ始めよう</h2>
+        <p class="lead text-muted mb-5">Coffee Recordsで、あなたのコーヒー体験を記録し、共有しましょう。</p>
+        <% if user_signed_in? %>
+          <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+            <%= link_to new_coffee_record_path, class: "btn btn-primary btn-lg px-4 py-3 me-md-2" do %>
+              <i class="fas fa-plus me-2"></i>コーヒー記録を作成
+            <% end %>
+            <%= link_to coffee_records_path, class: "btn btn-outline-primary btn-lg px-4 py-3" do %>
+              <i class="fas fa-list me-2"></i>記録一覧を見る
+            <% end %>
+          </div>
+        <% else %>
+          <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+            <%= link_to new_user_registration_path, class: "btn btn-primary btn-lg px-4 py-3 me-md-2" do %>
+              <i class="fas fa-user-plus me-2"></i>新規登録
+            <% end %>
+            <%= link_to new_user_session_path, class: "btn btn-outline-primary btn-lg px-4 py-3" do %>
+              <i class="fas fa-sign-in-alt me-2"></i>ログイン
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 最近の記録セクション -->
+<% if user_signed_in? && @recent_records&.any? %>
+  <section class="recent-records-section py-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-12 text-center mb-5">
+          <h2 class="display-6 fw-bold mb-3">最近の記録</h2>
+          <p class="lead text-muted">最新のコーヒー記録をチェックしよう</p>
+        </div>
+      </div>
+      <div class="row g-4">
+        <% @recent_records.each do |record| %>
+          <div class="col-md-4">
+            <%= link_to coffee_record_path(record), class: "text-decoration-none text-dark" do %>
+              <div class="card h-100 border-0 shadow-sm">
+                <% if record.image.present? %>
+                  <%= image_tag record.image.url, class: "card-img-top", style: "height: 200px; object-fit: cover;" %>
+                <% else %>
+                  <div class="bg-secondary d-flex align-items-center justify-content-center" style="height: 200px;">
+                    <div class="text-center text-white">
+                      <i class="fas fa-coffee fa-3x mb-2"></i>
+                      <div>No Image</div>
+                    </div>
+                  </div>
+                <% end %>
+                <div class="card-body">
+                  <h5 class="card-title"><%= record.origin %></h5>
+                  <p class="card-text">
+                    <strong>豆の種類:</strong> <%= record.bean_type %><br>
+                    <strong>精製方法:</strong> <%= record.process_method %><br>
+                    <strong>ローストレベル:</strong> <%= record.roast_level %><br>
+                    <strong>酸味レベル:</strong> <%= record.acidity_level %><br>
+                    <strong>ボディレベル:</strong> <%= record.body_level %>
+                  </p>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </section>
 <% end %>

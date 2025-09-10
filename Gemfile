@@ -4,7 +4,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby "3.2.2"
 
 # Rails本体
-gem "rails", "~> 7.1.0"
+gem "rails", "~> 7.1.5.2"
 
 # データベース
 gem "pg", "~> 1.1"
@@ -85,3 +85,7 @@ gem "rack", ">= 3.1.16"
 gem "rack-session", ">= 2.1.1"
 gem "importmap-rails"
 gem "sprockets-rails"
+
+# Sass関連のgem
+gem 'sassc-rails'
+gem 'sass-rails'

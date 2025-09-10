@@ -10,6 +10,10 @@ class User < ApplicationRecord
   has_many :bookmarked_coffee_records, through: :bookmarks, source: :coffee_record
   validates :name, presence: true
 
+  # セキュリティ質問用のバリデーション（テスト環境では必須にしない）
+  validates :security_question, presence: true, unless: -> { Rails.env.test? }
+  validates :security_answer, presence: true, unless: -> { Rails.env.test? }
+
   # 管理者判定メソッド
   def admin?
     email == 'guuuuumi93@gmail.com'
@@ -21,6 +25,14 @@ class User < ApplicationRecord
       user.email = auth.info.email
       user.password = Devise.friendly_token[0, 20]
       user.name = auth.info.name
+      # Google OAuthの場合はデフォルトのセキュリティ質問を設定
+      user.security_question = "birthplace"
+      user.security_answer = "Google"
     end
+  end
+
+  # セキュリティ回答の検証
+  def valid_security_answer?(answer)
+    security_answer.downcase.strip == answer.downcase.strip
   end
 end

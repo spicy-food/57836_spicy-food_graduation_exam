@@ -25,6 +25,12 @@ Rails.application.routes.draw do
   get 'privacy-policy', to: 'pages#privacy_policy'
   get 'terms-of-service', to: 'pages#terms_of_service'
 
+  # パスワードリセット用のルート
+  get 'password_reset', to: 'password_resets#new'
+  post 'password_reset', to: 'password_resets#create'
+  get 'password_reset/new_password', to: 'password_resets#new_password'
+  patch 'password_reset/update_password', to: 'password_resets#update_password'
+  
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
   # Can be used by load balancers and uptime monitors to verify that the app is live.
   get "up" => "rails/health#show", as: :rails_health_check
